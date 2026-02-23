@@ -162,9 +162,36 @@ checkboxes.forEach((checkbox, index) => {
     });
 });
 </script>
+    <script>
+// Save habit when clicked
+function toggleHabit(day, habit) {
+    const key = day + "-" + habit;
+    const element = document.getElementById(key);
+
+    if (element.classList.contains("selected")) {
+        element.classList.remove("selected");
+        localStorage.removeItem(key);
+    } else {
+        element.classList.add("selected");
+        localStorage.setItem(key, "true");
+    }
+}
+
+// Load saved habits when page opens
+window.onload = function() {
+    const elements = document.querySelectorAll(".habit");
+    elements.forEach(function(element) {
+        const key = element.id;
+        if (localStorage.getItem(key)) {
+            element.classList.add("selected");
+        }
+    });
+};
+    </script>
 
 </body>
 </html>
     
+
 
 
